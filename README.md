@@ -5,6 +5,7 @@ A Python-based 3D visualization of the **three-body problem** using `matplotlib`
 > 🎯 Focus: Educational simulation with real-time animation and configurable parameters.
 
 ---
+
 ## ✨ Features
 
 - 🔧 Interactive CLI config menu (customize masses, positions, velocities, `G`, and more)
@@ -120,10 +121,10 @@ This simulator prioritizes **visual understanding** and **usability** over exact
 ```
 .
 ├── 3body_simulation.py            # Main simulation code
-├── 3body_simulation.mp4           # Output animation (auto-generated)
+├── data.py
 ├── 3body_simulation_output.csv    # Trajectory data (auto-generated)
 ├── media/
-│   └── demo.gif                   # Optional: gif for demo purposes
+│   └── 3body_simulation.mp4                   # Output animation (auto-generated)
 └── README.md                      # This file
 ```
 
@@ -149,10 +150,3 @@ Feel free to fork, improve, or contribute back!
 - Community contributors and educators for inspiring open-source learning
 
 ---
-
-Let me know if you'd like:
-
-- 🌐 A version styled for a portfolio website
-- 🧩 A GUI version (Tkinter, PyQt, or Web)
-- 🧪 Jupyter notebook version
-- 🛠️ Modular version for reusability or educational kits
