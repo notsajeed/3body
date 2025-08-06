@@ -28,6 +28,8 @@ def validate_positions(p1, p2, p3):
         print("⚠️ Warning: Two or more bodies have the same initial position. This may cause instability.")
         exit(1)
 
+ani = None 
+
 # ---------- Config Menu ----------
 def run_config_menu():
     print("\n🎮 3-Body Simulator Config Menu")
@@ -120,6 +122,7 @@ def run_simulation(m1, m2, m3, pos1, pos2, pos3, vel1, vel2, vel3, G, axis_limit
     def update(frame):
         i = frame
         time = t_points[i]
+        nonlocal ani 
 
         # Current positions
         x1_val, y1_val, z1_val = p1[0, i], p1[1, i], p1[2, i]
@@ -140,7 +143,9 @@ def run_simulation(m1, m2, m3, pos1, pos2, pos3, vel1, vel2, vel3, G, axis_limit
             dot1.set_alpha(0.0)
             dot2.set_alpha(0.0)
             dot3.set_alpha(0.0)
-            ani.event_source.stop()
+            if ani and ani.event_source:
+                ani.event_source.stop()
+
             return dot1, dot2, dot3
 
         # Hide individual bodies if out of view
@@ -180,11 +185,15 @@ def run_simulation(m1, m2, m3, pos1, pos2, pos3, vel1, vel2, vel3, G, axis_limit
     ani = animation.FuncAnimation(fig, update, frames=range(0, p1.shape[1], 3), interval=10, blit=False)
     plt.legend()
     plt.tight_layout()
-
+    # plt.show()
     # Save animation as MP4
     print("💾 Saving animation to '3body_simulation.mp4'...")
-    ani.save("3body_simulation.mp4", writer="ffmpeg", fps=30)
-    print("✅ Animation saved as '3body_simulation.mp4'")
+    # Ensure 'media' folder exists
+    os.makedirs("media", exist_ok=True)
+
+    # Save animation in the 'media' folder
+    ani.save("media/3body_simulation.mp4", writer="ffmpeg", fps=30)
+    print("✅ Animation saved as 'media/3body_simulation.mp4'")
 
     # If you want a GIF instead, use this:
     # ani.save("3body_simulation.gif", writer="pillow", fps=15)
