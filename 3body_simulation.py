@@ -185,7 +185,7 @@ def run_simulation(m1, m2, m3, pos1, pos2, pos3, vel1, vel2, vel3, G, axis_limit
     ani = animation.FuncAnimation(fig, update, frames=range(0, p1.shape[1], 3), interval=10, blit=False)
     plt.legend()
     plt.tight_layout()
-    # plt.show()
+    plt.show()
     # Save animation as MP4
     print("💾 Saving animation to '3body_simulation.mp4'...")
     # Ensure 'media' folder exists
@@ -195,17 +195,11 @@ def run_simulation(m1, m2, m3, pos1, pos2, pos3, vel1, vel2, vel3, G, axis_limit
     ani.save("media/3body_simulation.mp4", writer="ffmpeg", fps=30)
     print("✅ Animation saved as 'media/3body_simulation.mp4'")
 
-    # If you want a GIF instead, use this:
-    # ani.save("3body_simulation.gif", writer="pillow", fps=15)
-
-    # Save simulation data
     df = pd.DataFrame(data, columns=["frame", "time", "planet", "x", "y", "z"])
     df.to_csv("3body_simulation_output.csv", index=False)
     print("📦 Simulation data saved to '3body_simulation_output.csv'")
 
 
-
-# ---------------------- ENTRY POINT ----------------------
 if __name__ == "__main__":
     config = run_config_menu()
     run_simulation(*config)
